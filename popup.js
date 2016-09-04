@@ -18,6 +18,9 @@ function addText()
   var json_str = getCookie(listCookie);
   var array = JSON.parse(json_str);
 	var word = document.getElementById('inputText').value;
+  if (word == ''){
+    return;
+  }
   document.getElementById('inputText').value = "";
   if (!Array.isArray(array))
   {
@@ -115,8 +118,8 @@ function getCookie(cname) {
 //Loads Current List
 //Sets Enter key as Enter button and delete key as clear
 document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById("clearButton").addEventListener("click", clickClearHandler);
-  document.querySelector('button').addEventListener('click', clickHandler);
+  document.getElementById("clearButton").addEventListener("click", clearList);
+  document.querySelector('button').addEventListener('click', addText);
   document.addEventListener("load", retrieveList());
  document.getElementById("inputText").addEventListener("keydown", function(e) {
     if (!e) { var e = window.event; }
