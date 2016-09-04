@@ -1,0 +1,27 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="ToDoStyles.css">
+  <title>To Do List</title>
+  <script src="popup.js"></script>
+</head>
+<body>
+<!-- <img id="newZealand" src="img/newZealand.jpg" alt="New Zealand" height="300" width="500"> -->
+  <div id="wrapper">
+	<h1>To Do List:</h1>
+  <ol id="list">
+  </ol>
+  <div id="nextText">
+    <input id = "inputText" type="text" placeholder="Enter Next Item"/>
+  </div>
+<button id="enterButton"> Enter </button>
+<button id="clearButton"> Clear All Entries </button>
+	<p id = "words">Enter what you have to do Alec. </p>
+  </div>
+</body>
+</html>

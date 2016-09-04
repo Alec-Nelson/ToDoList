@@ -1,0 +1,17 @@
+
+{
+  "manifest_version": 2,
+
+  "name": "To Do List",
+  "description": "This extension is a check list for Daily items to avoid forgetting important details",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "swordicon.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "https://ajax.googleapis.com/"
+  ]
+}
