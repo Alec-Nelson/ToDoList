@@ -1,6 +1,3 @@
-// Copyright (c) 2014 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
 
 function clickHandler(e){
   setTimeout(addText, 1);
@@ -9,9 +6,13 @@ function clickClearHandler(e){
   setTimeout(clearList, 1);
 }
 
-//global string for cookie list will be stored in
+// global string for cookie list will be stored in
 var listCookie = "ListItemsCookie";
 
+//Loads array of list items from cookie
+//pushes new list item to array
+//adds new list item to internal html
+//saves array new string into same cookie
 function addText()
 {
   var json_str = getCookie(listCookie);
@@ -38,6 +39,8 @@ function addText()
   setCookie(listCookie, json_str);
 }
 
+//loads List on Extension start up
+//
 function retrieveList()
 {
   var json_str = getCookie(listCookie);
@@ -65,11 +68,8 @@ function retrieveList()
   }
 }
 
-function farts9)
-{
-  
-}
-
+//Clear's List of all entries
+//saves empty array into cookie
 function clearList()
 {
   var element = document.getElementById("list");
@@ -77,6 +77,9 @@ function clearList()
   setCookie(listCookie, "[]");
 }
 
+//Moves list items into new positions relative
+//to other list items
+//saves them into
 function moveItem(ind){
   var json_str = getCookie(listCookie);
   var array = JSON.parse(json_str);
@@ -84,12 +87,17 @@ function moveItem(ind){
 
 }
 
+//Sets Cookie String
+//cname- String name of cookie
+//cvalue- new String to be saved in cookie
 function setCookie(cname, cvalue) {
     var d = new Date();
     document.cookie = cname + "=" + cvalue + ";";
 }
 
 
+//Retrieves String saved in cookie
+//cname- name of cookie
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
@@ -103,27 +111,9 @@ function getCookie(cname) {
 }
 
 
-
-
-
-// function getCurrentTabUrl(callback) {
-//   // Query filter to be passed to chrome.tabs.query - see
-//   // https://developer.chrome.com/extensions/tabs#method-query
-//   var queryInfo = {
-//     active: true,
-//     currentWindow: true
-//   };
-//   chrome.tabs.query(queryInfo, function(tabs) {
-//     var tab = tabs[0];
-//     var url = tab.url;
-//     console.assert(typeof url == 'string', 'tab.url should be a string');
-//     callback(url);
-//   });
-// }
-// function renderStatus(statusText) {
-//   document.getElementById('status').textContent = statusText;
-// }
-// retrieveList();
+//On Extension Window load, attatches all Event Listeners
+//Loads Current List
+//Sets Enter key as Enter button and delete key as clear
 document.addEventListener('DOMContentLoaded', function() {
   document.getElementById("clearButton").addEventListener("click", clickClearHandler);
   document.querySelector('button').addEventListener('click', clickHandler);
