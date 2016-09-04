@@ -10,9 +10,11 @@ function clickClearHandler(e){
 }
 var count = 0;
 
+//global string for cookie list will be stored in
+var listCookie = 'ListItemsCookie';
 function addText()
 {
-  var json_str = getCookie('listItems');
+  var json_str = getCookie(listCookie);
   var array = JSON.parse(json_str);
 	var word = document.getElementById('inputText').value;
   document.getElementById('inputText').value = "";
@@ -39,7 +41,7 @@ function addText()
 
 function retrieveList()
 {
-  var json_str = getCookie('listItems');
+  var json_str = getCookie(listCookie);
   var array = JSON.parse(json_str);
   if (!Array.isArray(array))
   {
@@ -72,7 +74,7 @@ function clearList()
 }
 
 function moveItem(ind){
-  var json_str = getCookie('listItems');
+  var json_str = getCookie(listCookie);
   var array = JSON.parse(json_str);
   alert("moving item "+ ind.innerHTML );
 
