@@ -113,6 +113,12 @@ function getCookie(cname) {
     return "";
 }
 
+//TEST
+$( function() {
+  $("#list").sortable();
+  $("#list").disableSelection();
+} );
+
 
 //On Extension Window load, attatches all Event Listeners
 //Loads Current List

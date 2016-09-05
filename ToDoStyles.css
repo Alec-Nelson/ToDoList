@@ -1,4 +1,4 @@
-body 
+body
 {
   font-family: "Garamond", "Lucida Grande", Tahoma, sans-serif;
   font-size: 100%;
@@ -43,7 +43,7 @@ div#wrapper
 button
 {
   border: 1px solid #003366;
-  border-radius: 5px; 
+  border-radius: 5px;
   display: inline;
   background-color: #0099cc;
   color: white;
@@ -61,11 +61,11 @@ button:hover
 }
 input#inputText
 {
-      background: white; 
-      border: 1px solid #003366; 
-  border-radius: 5px; 
-  box-shadow: 0 0 5px 3px #003366; 
-  color: #666; 
+      background: white;
+      border: 1px solid #003366;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 3px #003366;
+  color: #666;
   margin-top: 4px;
   margin-bottom: 8px;
   font-family: garamond;
