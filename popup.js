@@ -64,10 +64,10 @@ function retrieveList()
     element.appendChild(newItem);
     //closure so function executes now and local variable is passed
     //each list item has a event listener with its own node
-    (function(newItem) {newItem.addEventListener("click", function()
-                  {moveItem(newItem)});
+    (function() {newItem.addEventListener("dragover", function()
+                  {moveItem()});
                 }
-    )(newItem);
+    )();
   }
 }
 
@@ -83,10 +83,15 @@ function clearList()
 //Moves list items into new positions relative
 //to other list items
 //saves them into
-function moveItem(ind){
-  var json_str = getCookie(listCookie);
-  var array = JSON.parse(json_str);
-  alert("moving item "+ ind.innerHTML );
+function sortUpdate(){
+  // var json_str = getCookie(listCookie);
+  // var array = JSON.parse(json_str);
+  //
+  // for (var i = 0; i < array.length; i++)
+  // {
+  //   array[i] = document.getElementsByTagnName("li");
+  // }
+  alert("moving item ");
 
 }
 
@@ -113,10 +118,24 @@ function getCookie(cname) {
     return "";
 }
 
-//TEST
+//takes li html elements draggable
+// reorganized with jquery library
 $( function() {
   $("#list").sortable();
   $("#list").disableSelection();
+  $("#list").on( "sortupdate", function( event, ui ) {
+    //Event triggered on drag end
+    var json_str = getCookie(listCookie);
+    var array = JSON.parse(json_str);
+    var tempArray =  document.getElementsByTagName("li");
+    //retrieves list in html and updates array in cookie
+    for (var i = 0; i < array.length; i++)
+    {
+      array[i] = tempArray[i].innerHTML;
+    }
+    var json_str = JSON.stringify(array);
+    setCookie(listCookie, json_str);
+  } );
 } );
 
 
