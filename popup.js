@@ -59,15 +59,19 @@ function retrieveList()
   for (i = 0; i < array.length; i++)
   {
     var newItem = document.createElement("li");
+    var newBox = document.createElement("input");
+    newBox.type = "checkbox";
+    newBox.id = "check";
     var node = document.createTextNode(array[i]);
+    newItem.appendChild(newBox);
     newItem.appendChild(node);
     element.appendChild(newItem);
     //closure so function executes now and local variable is passed
     //each list item has a event listener with its own node
-    (function() {newItem.addEventListener("dragover", function()
-                  {moveItem()});
+    (function(newItem, newBox) {newBox.addEventListener("change", function()
+                  {checkBox(newItem, newBox)});
                 }
-    )();
+    )(newItem, newBox);
   }
 }
 
@@ -83,15 +87,19 @@ function clearList()
 //Moves list items into new positions relative
 //to other list items
 //saves them into
-function sortUpdate(){
-  // var json_str = getCookie(listCookie);
-  // var array = JSON.parse(json_str);
-  //
-  // for (var i = 0; i < array.length; i++)
-  // {
-  //   array[i] = document.getElementsByTagnName("li");
-  // }
-  alert("moving item ");
+function checkBox(listItem, listBox){
+
+  // alert(listItem.textContent + " is checked: " + listBox.checked);
+  if (listBox.checked)
+  {
+    listItem.style.color = "grey";
+    listItem.style.textDecoration = "line-through";
+  }
+  else {
+    listItem.style.color = "darkblue";
+    listItem.style.textDecoration = "";
+
+  }
 
 }
 
@@ -118,6 +126,7 @@ function getCookie(cname) {
     return "";
 }
 
+//jquery on popup load
 //takes li html elements draggable
 // reorganized with jquery library
 $( function() {
@@ -131,12 +140,28 @@ $( function() {
     //retrieves list in html and updates array in cookie
     for (var i = 0; i < array.length; i++)
     {
-      array[i] = tempArray[i].innerHTML;
+      array[i] = tempArray[i].textContent;
     }
     var json_str = JSON.stringify(array);
     setCookie(listCookie, json_str);
   } );
-} );
+  // $("#checkbox").change(function() {
+  //   alert("checked");
+  //     var $this = $(this);
+  //     //$this will contain a reference to the checkbox
+  //     if ($this.is(':checked')) {
+  //         alert("checked");
+  //     } else {
+  //         // the checkbox was unchecked
+  //         alert("unchecked");
+  //     }
+  // });
+
+});
+// } );
+
+
+
 
 
 //On Extension Window load, attatches all Event Listeners

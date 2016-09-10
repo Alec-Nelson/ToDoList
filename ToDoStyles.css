@@ -72,9 +72,15 @@ input#inputText
   text-indent: 5px;
   width: 225px;
 }
-img
-{
+input[type=checkbox] {
+  /*margin-left: 12px;*/
+  /*float: right;*/
+  margin-left: 12px;
 }
+/*li
+{
+  padding-right: 3px;
+}*/
 /*     {
   /* avoid an excessively wide status text */
   white-space: pre;
