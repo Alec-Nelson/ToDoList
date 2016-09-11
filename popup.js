@@ -34,9 +34,16 @@ function addText()
   for (i = 0; i < array.length; i++)
   {
     var newItem = document.createElement("li");
+    var newBox = document.createElement("input");
+    newBox.type = "checkbox";
     var node = document.createTextNode(array[i]);
+    newItem.appendChild(newBox);
     newItem.appendChild(node);
     element.appendChild(newItem);
+    (function(newItem, newBox) {newBox.addEventListener("change", function()
+                  {checkBox(newItem, newBox)});
+                }
+    )(newItem, newBox);
   }
   var json_str = JSON.stringify(array);
   setCookie(listCookie, json_str);
@@ -61,7 +68,6 @@ function retrieveList()
     var newItem = document.createElement("li");
     var newBox = document.createElement("input");
     newBox.type = "checkbox";
-    newBox.id = "check";
     var node = document.createTextNode(array[i]);
     newItem.appendChild(newBox);
     newItem.appendChild(node);
@@ -84,9 +90,8 @@ function clearList()
   setCookie(listCookie, "[]");
 }
 
-//Moves list items into new positions relative
-//to other list items
-//saves them into
+//executes whenever a checkBox
+//is checked
 function checkBox(listItem, listBox){
 
   // alert(listItem.textContent + " is checked: " + listBox.checked);
@@ -94,6 +99,11 @@ function checkBox(listItem, listBox){
   {
     listItem.style.color = "grey";
     listItem.style.textDecoration = "line-through";
+    var json_str = getCookie(listCookie);
+    var array = JSON.parse(json_str);
+    array.splice(array.indexOf(listItem.textContent), 1);
+    var json_str = JSON.stringify(array);
+    setCookie(listCookie, json_str);
   }
   else {
     listItem.style.color = "darkblue";
