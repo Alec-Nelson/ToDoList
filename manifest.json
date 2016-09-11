@@ -3,7 +3,7 @@
   "manifest_version": 2,
 
   "name": "To Do List",
-  "description": "In GIT Folder This extension is a check list for Daily items to avoid forgetting important details",
+  "description": "This extension is a check list for Daily items to avoid forgetting important details while browsing the internet.",
   "version": "2.0",
 
   "browser_action": {
